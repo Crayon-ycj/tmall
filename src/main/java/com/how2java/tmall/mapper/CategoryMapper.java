@@ -1,7 +1,7 @@
 package com.how2java.tmall.mapper;
 
 import com.how2java.tmall.pojo.Category;
-import com.how2java.tmall.utils.Page;
+import com.how2java.tmall.util.Page;
 
 import java.util.List;
 
@@ -20,4 +20,10 @@ public interface CategoryMapper {
      * @return int
      */
     int total();
+
+    /**
+     * 添加记录
+     * @param category
+     */
+    void add(Category category);
 }

@@ -1,7 +1,7 @@
 package com.how2java.tmall.service;
 
 import com.how2java.tmall.pojo.Category;
-import com.how2java.tmall.utils.Page;
+import com.how2java.tmall.util.Page;
 
 import java.util.List;
 
@@ -20,4 +20,9 @@ public interface CategoryService {
      * @return
      */
     int total();
+
+    /**
+     * 添加记录
+     */
+    void add(Category category);
 }

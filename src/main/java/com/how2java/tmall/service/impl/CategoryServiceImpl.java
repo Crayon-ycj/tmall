@@ -3,7 +3,7 @@ package com.how2java.tmall.service.impl;
 import com.how2java.tmall.mapper.CategoryMapper;
 import com.how2java.tmall.pojo.Category;
 import com.how2java.tmall.service.CategoryService;
-import com.how2java.tmall.utils.Page;
+import com.how2java.tmall.util.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,5 +27,13 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public List<Category> list(Page page) {
         return categoryMapper.list(page);
+    }
+
+    /**
+     * 添加记录
+     */
+    @Override
+    public void add(Category category) {
+        categoryMapper.add(category);
     }
 }

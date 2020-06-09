@@ -1,4 +1,4 @@
-package com.how2java.tmall.utils;
+package com.how2java.tmall.util;
 
 public class Page {
 
