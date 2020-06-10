@@ -57,9 +57,17 @@ public class CategoryController {
     public String delete(int id, HttpSession session) {
         categoryService.delete(id);
 
-        File  imageFolder= new File(session.getServletContext().getRealPath("img/category"));
-        File file = new File(imageFolder,id+".jpg");
+        File imageFolder = new File(session.getServletContext().getRealPath("img/category"));
+        File file = new File(imageFolder, id + ".jpg");
         file.delete();
         return "redirect:/admin_category_list";
+    }
+
+    @RequestMapping("admin_category_edit")
+    public String edit(Model model, int id) {
+        Category c = categoryService.get(id);
+        model.addAttribute("c", c);
+
+        return "admin/editCategory";
     }
 }

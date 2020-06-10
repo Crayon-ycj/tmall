@@ -31,4 +31,11 @@ public interface CategoryService {
      * @param id
      */
     void delete(int id);
+
+    /**
+     * 通过id获取分类
+     * @param id
+     * @return
+     */
+    Category get(int id);
 }

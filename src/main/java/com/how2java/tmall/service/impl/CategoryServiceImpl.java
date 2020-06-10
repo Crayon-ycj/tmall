@@ -40,6 +40,17 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     /**
+     * 通过id获取分类
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public Category get(int id) {
+        return categoryMapper.get(id);
+    }
+
+    /**
      * 添加记录
      */
     @Override

@@ -32,4 +32,11 @@ public interface CategoryMapper {
      * @param id
      */
     void delete(int id);
+
+    /**
+     * 通过id获取用户
+     * @param id
+     * @return
+     */
+    Category get(int id);
 }
