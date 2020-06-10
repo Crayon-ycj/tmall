@@ -38,4 +38,10 @@ public interface CategoryService {
      * @return
      */
     Category get(int id);
+
+    /**
+     * 更新信息
+     * @param category
+     */
+    void update(Category category);
 }
