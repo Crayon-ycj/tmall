@@ -30,6 +30,16 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     /**
+     * 删除记录
+     *
+     * @param id
+     */
+    @Override
+    public void delete(int id) {
+        categoryMapper.delete(id);
+    }
+
+    /**
      * 添加记录
      */
     @Override

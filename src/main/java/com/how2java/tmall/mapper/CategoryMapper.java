@@ -26,4 +26,10 @@ public interface CategoryMapper {
      * @param category
      */
     void add(Category category);
+
+    /**
+     * 删除记录
+     * @param id
+     */
+    void delete(int id);
 }

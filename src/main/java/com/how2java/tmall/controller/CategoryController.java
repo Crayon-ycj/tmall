@@ -24,10 +24,10 @@ public class CategoryController {
     CategoryService categoryService;
 
     @RequestMapping("admin_category_list")
-    public String list(Model model,Page page){
+    public String list(Model model, Page page) {
 
 //        System.out.println(page);
-        List<Category> cs= categoryService.list(page);
+        List<Category> cs = categoryService.list(page);
         int total = categoryService.total();
         page.setTotal(total);
         model.addAttribute("cs", cs);
@@ -36,7 +36,7 @@ public class CategoryController {
     }
 
     @RequestMapping("admin_category_add")
-    public String add(Category c,HttpSession session, UploadedImageFile uploadedImageFile) throws IOException {
+    public String add(Category c, HttpSession session, UploadedImageFile uploadedImageFile) throws IOException {
         System.out.println(c);
         categoryService.add(c);
         File imageFolder = new File(session.getServletContext().getRealPath("/img/category"));
@@ -50,6 +50,16 @@ public class CategoryController {
         uploadedImageFile.getImage().transferTo(file);
         BufferedImage img = ImageUtil.change2jpg(file);
         ImageIO.write(img, "jpg", file);
+        return "redirect:/admin_category_list";
+    }
+
+    @RequestMapping("admin_category_delete")
+    public String delete(int id, HttpSession session) {
+        categoryService.delete(id);
+
+        File  imageFolder= new File(session.getServletContext().getRealPath("img/category"));
+        File file = new File(imageFolder,id+".jpg");
+        file.delete();
         return "redirect:/admin_category_list";
     }
 }

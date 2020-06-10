@@ -25,4 +25,10 @@ public interface CategoryService {
      * 添加记录
      */
     void add(Category category);
+
+    /**
+     * 删除记录
+     * @param id
+     */
+    void delete(int id);
 }
