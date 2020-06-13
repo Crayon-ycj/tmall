@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.how2java.tmall.mapper.ProductMapper">
+  <resultMap id="BaseResultMap" type="com.how2java.tmall.pojo.Product">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="productNum" jdbcType="VARCHAR" property="productNum" />
+    <result column="productName" jdbcType="VARCHAR" property="productName" />
+    <result column="cityName" jdbcType="VARCHAR" property="cityName" />
+    <result column="DepartureTime" jdbcType="TIMESTAMP" property="departureTime" />
+    <result column="productPrice" jdbcType="DOUBLE" property="productPrice" />
+    <result column="productDesc" jdbcType="VARCHAR" property="productDesc" />
+    <result column="productStatus" jdbcType="INTEGER" property="productStatus" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, productNum, productName, cityName, DepartureTime, productPrice, productDesc, 
+    productStatus
+  </sql>
+  <select id="selectByExample" parameterType="com.how2java.tmall.pojo.ProductExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from product
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from product
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from product
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.how2java.tmall.pojo.Product" useGeneratedKeys="true">
+    insert into product (productNum, productName, cityName, 
+      DepartureTime, productPrice, productDesc, 
+      productStatus)
+    values (#{productNum,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, #{cityName,jdbcType=VARCHAR}, 
+      #{departureTime,jdbcType=TIMESTAMP}, #{productPrice,jdbcType=DOUBLE}, #{productDesc,jdbcType=VARCHAR}, 
+      #{productStatus,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.how2java.tmall.pojo.Product" useGeneratedKeys="true">
+    insert into product
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="productNum != null">
+        productNum,
+      </if>
+      <if test="productName != null">
+        productName,
+      </if>
+      <if test="cityName != null">
+        cityName,
+      </if>
+      <if test="departureTime != null">
+        DepartureTime,
+      </if>
+      <if test="productPrice != null">
+        productPrice,
+      </if>
+      <if test="productDesc != null">
+        productDesc,
+      </if>
+      <if test="productStatus != null">
+        productStatus,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="productNum != null">
+        #{productNum,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null">
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null">
+        #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="departureTime != null">
+        #{departureTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productPrice != null">
+        #{productPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="productDesc != null">
+        #{productDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="productStatus != null">
+        #{productStatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.how2java.tmall.pojo.Product">
+    update product
+    <set>
+      <if test="productNum != null">
+        productNum = #{productNum,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null">
+        productName = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null">
+        cityName = #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="departureTime != null">
+        DepartureTime = #{departureTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productPrice != null">
+        productPrice = #{productPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="productDesc != null">
+        productDesc = #{productDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="productStatus != null">
+        productStatus = #{productStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.how2java.tmall.pojo.Product">
+    update product
+    set productNum = #{productNum,jdbcType=VARCHAR},
+      productName = #{productName,jdbcType=VARCHAR},
+      cityName = #{cityName,jdbcType=VARCHAR},
+      DepartureTime = #{departureTime,jdbcType=TIMESTAMP},
+      productPrice = #{productPrice,jdbcType=DOUBLE},
+      productDesc = #{productDesc,jdbcType=VARCHAR},
+      productStatus = #{productStatus,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
