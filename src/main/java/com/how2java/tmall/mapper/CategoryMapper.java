@@ -1,48 +1,21 @@
 package com.how2java.tmall.mapper;
 
 import com.how2java.tmall.pojo.Category;
-import com.how2java.tmall.util.Page;
-
+import com.how2java.tmall.pojo.CategoryExample;
 import java.util.List;
 
-/**
- * @author yangchengjie
- */
 public interface CategoryMapper {
-    /**
-     * 查询分页列表
-     * @return List
-     */
-    List<Category> list(Page page);
+    int deleteByPrimaryKey(Integer id);
 
-    /**
-     * 查询总页数
-     * @return int
-     */
-    int total();
+    int insert(Category record);
 
-    /**
-     * 添加记录
-     * @param category
-     */
-    void add(Category category);
+    int insertSelective(Category record);
 
-    /**
-     * 删除记录
-     * @param id
-     */
-    void delete(int id);
+    List<Category> selectByExample(CategoryExample example);
 
-    /**
-     * 通过id获取用户
-     * @param id
-     * @return
-     */
-    Category get(int id);
+    Category selectByPrimaryKey(Integer id);
 
-    /**
-     * 更新信息
-     * @param category
-     */
-    void update(Category category);
+    int updateByPrimaryKeySelective(Category record);
+
+    int updateByPrimaryKey(Category record);
 }
